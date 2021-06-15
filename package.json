@@ -1,0 +1,26 @@
+{
+  "name": "podcast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmnb0516/podcast.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fmnb0516/podcast/issues"
+  },
+  "homepage": "https://github.com/fmnb0516/podcast#readme",
+  "dependencies": {
+    "mp3-duration": "^1.1.0",
+    "node-id3": "^0.2.3"
+  }
+}
