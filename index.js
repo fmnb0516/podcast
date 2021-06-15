@@ -3,6 +3,12 @@ const mp3Duration = require('mp3-duration');
 const recursive = require('recursive-readdir');
 const dateFormat = require("dateformat");
 const fs = require('fs');
+const crypto = require('crypto')
+
+const md5hex = (str) => {
+	const md5 = crypto.createHash('md5')
+	return md5.update(str, 'binary').digest('hex')
+  }
 
 const audiofiles = () => {
   return new Promise((resolve, reject) => {
@@ -63,7 +69,6 @@ const writeXML = (config, articles, print) => {
 	print("");
 	print("    <itunes:image href=\""+config.image+"\" />");
 
-	/*
 	categories.forEach(t => {
 		print("    <itunes:category text=\"${category}\"/>");
 	});
@@ -71,18 +76,17 @@ const writeXML = (config, articles, print) => {
 	articles.forEach(a => {
 
 		print("    <item>");
-		print("        <title>${info.title}</title>");
-		print("        <itunes:author>${info.author}</itunes:author>");
-		print("        <itunes:subtitle>${info.subtitle}</itunes:subtitle>");
-		print("        <itunes:summary><![CDATA[${info.summary}]]></itunes:summary>");
-		print("        <itunes:image href=\"${info.image}\" />");
-		print("        <enclosure url=\"${baseurl}${info.url}\" />");
-		print("        <guid>${hash}</guid>");
-		print("        <pubDate>${info.date}</pubDate>");
-		print("        <itunes:duration>${info.duration}</itunes:duration>");
+		print("        <title>"+a.title+"</title>");
+		print("        <itunes:author>djmax"+"</itunes:author>");
+		print("        <itunes:subtitle>"+"</itunes:subtitle>");
+		print("        <itunes:summary><![CDATA["+"]]></itunes:summary>");
+		print("        <itunes:image href=\""+"\" />");
+		print("        <enclosure url=\""+config.link+a.url+"\" />");
+		print("        <guid>"+md5hex(config.link+a.url)+"</guid>");
+		print("        <pubDate>"+a.date+"</pubDate>");
+		print("        <itunes:duration>"+a.duration+"</itunes:duration>");
 		print("    </item>");
 	});
-	*/
 
 	print("</channel>");
 	print("</rss>");
@@ -105,7 +109,7 @@ const run = async () => {
 			subtitle : "",
 			summary : "",
 			image : "",
-			url : file.replace(/\\/g, '/'),
+			url : file.replace(/\\/g, '/').replace(/docs\//g, ''),
 			date :dateFormat(props.ctime, "yyyy-mm-dd"),
 			duration :duration
 		});

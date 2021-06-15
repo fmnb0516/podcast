@@ -16,5 +16,16 @@
     </itunes:owner>
 
     <itunes:image href="https://fmnb0516.github.io/podcast/thumbnail.png" />
+    <item>
+        <title>Don't Die</title>
+        <itunes:author>djmax</itunes:author>
+        <itunes:subtitle></itunes:subtitle>
+        <itunes:summary><![CDATA[]]></itunes:summary>
+        <itunes:image href="" />
+        <enclosure url="https://fmnb0516.github.io/podcast/audio/djmax/001.[RESPECT]-[Dont-Die].mp3" />
+        <guid>44458f417d3f9e9aaab10b5c7d96c850</guid>
+        <pubDate>2021-06-15</pubDate>
+        <itunes:duration>131.082</itunes:duration>
+    </item>
 </channel>
 </rss>
