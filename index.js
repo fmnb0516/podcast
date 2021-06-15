@@ -3,7 +3,8 @@ const mp3Duration = require('mp3-duration');
 const recursive = require('recursive-readdir');
 const dateFormat = require("dateformat");
 const fs = require('fs');
-const crypto = require('crypto')
+const crypto = require('crypto');
+const readline = require('readline');
 
 const md5hex = (str) => {
 	const md5 = crypto.createHash('md5')
@@ -79,7 +80,7 @@ const writeXML = (config, articles, print) => {
 		print("        <title>"+a.title+"</title>");
 		print("        <itunes:author>"+a.author+"</itunes:author>");
 		print("        <itunes:subtitle>"+"</itunes:subtitle>");
-		print("        <itunes:summary><![CDATA["+"]]></itunes:summary>");
+		print("        <itunes:summary><![CDATA["+a.summary+"]]></itunes:summary>");
 		print("        <itunes:image href=\""+"\" />");
 		print("        <enclosure url=\""+config.link+a.url+"\" />");
 		print("        <guid>"+md5hex(config.link+a.url)+"</guid>");
@@ -92,8 +93,26 @@ const writeXML = (config, articles, print) => {
 	print("</rss>");
 };
 
+const prompt = async (msg) => {
+	process.stdout.write(msg+" > ");
+	const answer = await question('> ');
+	return answer.trim();
+};
 
-const run = async (confId) => {
+const question = (question) => {
+	const readlineInterface = readline.createInterface({
+		input: process.stdin,
+		output: process.stdou
+	});
+	return new Promise((resolve) => {
+		readlineInterface.question(question, (answer) => {
+			resolve(answer);
+			readlineInterface.close();
+		});
+	});
+};
+
+const xmlGen = async (confId) => {
 	const config = JSON.parse(fs.readFileSync("./configs/"+confId+".json", 'utf8'));
 	const result = await audiofiles("./docs/audio/"+confId);
 	const articles = [];
@@ -106,9 +125,9 @@ const run = async (confId) => {
 		const props = fs.statSync(file);
 		articles.push({
 			title : tags.title,
-			author: tags.performerInfo,
+			author: tags.artist,
 			subtitle : "",
-			summary : "",
+			summary : tags.title + " - " + tags.artist + " - " + tags.album,
 			image : "",
 			url : file.replace(/\\/g, '/').replace(/docs\//g, ''),
 			date :dateFormat(props.ctime, "yyyy-mm-dd"),
@@ -116,12 +135,36 @@ const run = async (confId) => {
 		});
 	}
 
+	const lines = [];
 	writeXML(config, articles, (text) => {
-		console.log(text)
+		console.log(text);
+		lines.push(text);
 	});
+
+	fs.writeFileSync("./docs/"+confId+".xml", lines.join("\r\n"));
 };
 
-const confId = process.argv[2];
-if(confId !== undefined) {
-	run(confId);
+const mp3tagGen = async (file) => {
+	const tags = {};
+
+	tags.title = (await prompt('title')).trim();
+	tags.artist = (await prompt('artist')).trim();
+	tags.album = (await prompt('album')).trim();
+
+	NodeID3.write(tags, file);
+	console.log(await getTag(file));
+};
+
+const mode = process.argv[2];
+const target =  process.argv[3];
+
+if(mode === 'mp3tag' && target !== undefined) {
+	mp3tagGen(target);
 }
+
+if(mode === "xml" && target !== undefined) {
+	xmlGen(target);
+}
+
+
+
