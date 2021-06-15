@@ -40,8 +40,57 @@ const getTag = (file) => {
 	});
 };
 
+const writeXML = (config, articles, print) => {
+
+	const categories = [];
+
+	print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+	print("<rss xmlns:itunes=\"http://www.itunes.com/dtds/podcast-1.0.dtd\" version=\"2.0\">");
+	print("<channel>");
+	print("    <title>"+config.title+"</title>");
+	print("    <link>"+config.link+"</link>");
+	print("    <language>"+config.locale+"</language>");
+	print("    <copyright>"+config.copyright+"</copyright>");
+	print("");
+	print("    <itunes:subtitle>"+config.subtitle+"</itunes:subtitle>");
+	print("    <itunes:author>"+config.author+"</itunes:author>");
+	print("    <itunes:summary>"+config.summary+"</itunes:summary>");
+	print("    <description>"+config.description+"</description>");
+	print("    <itunes:owner>");
+	print("        <itunes:name>"+config.author+"</itunes:name>");
+	print("        <itunes:email>"+config.email+"</itunes:email>");
+	print("    </itunes:owner>");
+	print("");
+	print("    <itunes:image href=\""+config.image+"\" />");
+
+	/*
+	categories.forEach(t => {
+		print("    <itunes:category text=\"${category}\"/>");
+	});
+
+	articles.forEach(a => {
+
+		print("    <item>");
+		print("        <title>${info.title}</title>");
+		print("        <itunes:author>${info.author}</itunes:author>");
+		print("        <itunes:subtitle>${info.subtitle}</itunes:subtitle>");
+		print("        <itunes:summary><![CDATA[${info.summary}]]></itunes:summary>");
+		print("        <itunes:image href=\"${info.image}\" />");
+		print("        <enclosure url=\"${baseurl}${info.url}\" />");
+		print("        <guid>${hash}</guid>");
+		print("        <pubDate>${info.date}</pubDate>");
+		print("        <itunes:duration>${info.duration}</itunes:duration>");
+		print("    </item>");
+	});
+	*/
+
+	print("</channel>");
+	print("</rss>");
+};
+
 
 const run = async () => {
+	const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 	const result = await audiofiles("./docs/audio");
 	const articles = [];
 
@@ -60,9 +109,11 @@ const run = async () => {
 			date :dateFormat(props.ctime, "yyyy-mm-dd"),
 			duration :duration
 		});
-
-		console.log(articles);
 	}
+
+	writeXML(config, articles, (text) => {
+		console.log(text)
+	});
 };
 
 run();

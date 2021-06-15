@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+<channel>
+    <title>fmnb0516's Podcast</title>
+    <link>https://fmnb0516.github.io/podcast/</link>
+    <language>ja</language>
+    <copyright>fmnb0516</copyright>
+
+    <itunes:subtitle></itunes:subtitle>
+    <itunes:author>fmnb0516</itunes:author>
+    <itunes:summary></itunes:summary>
+    <description></description>
+    <itunes:owner>
+        <itunes:name>fmnb0516</itunes:name>
+        <itunes:email>fmnb0516@mnb.bz</itunes:email>
+    </itunes:owner>
+
+    <itunes:image href="https://fmnb0516.github.io/podcast/thumbnail.png" />
+</channel>
+</rss>
