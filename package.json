@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/fmnb0516/podcast#readme",
   "dependencies": {
+    "dateformat": "^4.5.1",
     "mp3-duration": "^1.1.0",
-    "node-id3": "^0.2.3"
+    "node-id3": "^0.2.3",
+    "recursive-readdir": "^2.2.2"
   }
 }
