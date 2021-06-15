@@ -77,7 +77,7 @@ const writeXML = (config, articles, print) => {
 
 		print("    <item>");
 		print("        <title>"+a.title+"</title>");
-		print("        <itunes:author>djmax"+"</itunes:author>");
+		print("        <itunes:author>"+a.author+"</itunes:author>");
 		print("        <itunes:subtitle>"+"</itunes:subtitle>");
 		print("        <itunes:summary><![CDATA["+"]]></itunes:summary>");
 		print("        <itunes:image href=\""+"\" />");
@@ -93,9 +93,9 @@ const writeXML = (config, articles, print) => {
 };
 
 
-const run = async () => {
-	const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-	const result = await audiofiles("./docs/audio");
+const run = async (confId) => {
+	const config = JSON.parse(fs.readFileSync("./configs/"+confId+".json", 'utf8'));
+	const result = await audiofiles("./docs/audio/"+confId);
 	const articles = [];
 
 	for(let i=0; i<result.length; i++) {
@@ -106,6 +106,7 @@ const run = async () => {
 		const props = fs.statSync(file);
 		articles.push({
 			title : tags.title,
+			author: tags.performerInfo,
 			subtitle : "",
 			summary : "",
 			image : "",
@@ -120,4 +121,7 @@ const run = async () => {
 	});
 };
 
-run();
+const confId = process.argv[2];
+if(confId !== undefined) {
+	run(confId);
+}
