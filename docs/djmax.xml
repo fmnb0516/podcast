@@ -17,6 +17,17 @@
 
     <itunes:image href="https://fmnb0516.github.io/podcast/djmax-thumbnai.jpg" />
     <item>
+        <title>NB RANGER</title>
+        <itunes:author>DJMAX</itunes:author>
+        <itunes:subtitle></itunes:subtitle>
+        <itunes:summary><![CDATA[NB RANGER - DJMAX - DJMAX RESPECT, Vol. 1 (Original Soundtrack)]]></itunes:summary>
+        <itunes:image href="" />
+        <enclosure url="https://fmnb0516.github.io/podcast/audio/djmax/002.NB-RANGER .mp3" />
+        <guid>56505c40f96027cd2a096b58c9c656e6</guid>
+        <pubDate>2021-06-15</pubDate>
+        <itunes:duration>117.708</itunes:duration>
+    </item>
+    <item>
         <title>Don't Die</title>
         <itunes:author>DJMAX</itunes:author>
         <itunes:subtitle></itunes:subtitle>
@@ -26,6 +37,39 @@
         <guid>44458f417d3f9e9aaab10b5c7d96c850</guid>
         <pubDate>2021-06-15</pubDate>
         <itunes:duration>131.082</itunes:duration>
+    </item>
+    <item>
+        <title>Oblivion</title>
+        <itunes:author>DJMAX</itunes:author>
+        <itunes:subtitle></itunes:subtitle>
+        <itunes:summary><![CDATA[Oblivion - DJMAX - Djmax Best, Vol. 1 (Original Soundtrack)]]></itunes:summary>
+        <itunes:image href="" />
+        <enclosure url="https://fmnb0516.github.io/podcast/audio/djmax/003.OBLIVION.mp3" />
+        <guid>286ec46a9b27bdd65fd0d93c9bec58d3</guid>
+        <pubDate>2021-06-15</pubDate>
+        <itunes:duration>119.432</itunes:duration>
+    </item>
+    <item>
+        <title>Ray of Illuminati</title>
+        <itunes:author>ESTi</itunes:author>
+        <itunes:subtitle></itunes:subtitle>
+        <itunes:summary><![CDATA[Ray of Illuminati - ESTi - DJMAX PORTABLE Original Sound Tracks]]></itunes:summary>
+        <itunes:image href="" />
+        <enclosure url="https://fmnb0516.github.io/podcast/audio/djmax/004.Ray-of-Illuminati .mp3" />
+        <guid>3c97053ac1bd76c9acc31cc2883cca8d</guid>
+        <pubDate>2021-06-15</pubDate>
+        <itunes:duration>128.731</itunes:duration>
+    </item>
+    <item>
+        <title>Soda Pop City</title>
+        <itunes:author>nora2r</itunes:author>
+        <itunes:subtitle></itunes:subtitle>
+        <itunes:summary><![CDATA[Soda Pop City - nora2r - My Little Secret]]></itunes:summary>
+        <itunes:image href="" />
+        <enclosure url="https://fmnb0516.github.io/podcast/audio/djmax/005.Soda-Pop-City.mp3" />
+        <guid>2854933810a8b2fb2d7a46a84ff0e438</guid>
+        <pubDate>2021-06-15</pubDate>
+        <itunes:duration>261.433</itunes:duration>
     </item>
 </channel>
 </rss>
